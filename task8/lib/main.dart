@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:task8/ui/home_page.dart';
+import 'package:task8/ui/splash_screen/splash_screen.dart';
 
 void main() async{
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

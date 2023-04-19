@@ -14,14 +14,17 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  bool isPlaying = false;
+
   final _myBox = Hive.box('MyBox');
   ToDoDataBase dataBase = ToDoDataBase();
 
   @override
   void initState() {
     // TODO: implement initState
-
     //agar app first time chalay gi to default data load hoga
     if (_myBox.get("ToDoList") == null) {
       dataBase.createInitialData();
@@ -29,6 +32,10 @@ class _HomePageState extends State<HomePage> {
       // agar user na first time app nai chalai hogi to uska pehlay wala data load hoga
       dataBase.loadData();
     }
+
+    //icon animation
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 450));
     super.initState();
   }
 
@@ -57,7 +64,13 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return DialogBox(
             textController: _controller,
-            onCancel: () => Navigator.of(context).pop(),
+            onCancel: () {
+              setState(() {
+                Navigator.of(context).pop();
+                _animationController.reverse();
+                isPlaying = false ;
+              });
+            } ,
             onSave: addNewTask,
           );
         });
@@ -70,12 +83,22 @@ class _HomePageState extends State<HomePage> {
     dataBase.updateData();
   }
 
+  void _handleOnPressed() {
+    setState(() {
+      isPlaying = !isPlaying;
+      isPlaying
+          ? _animationController.forward()
+          : _animationController.reverse();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.yellow.shade200,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(
             'To Do',
             style: GoogleFonts.figtree(
@@ -90,10 +113,14 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
+              _handleOnPressed();
               createNewTask();
             });
           },
-          child: const Icon(Icons.add),
+          child: AnimatedIcon(
+            icon: AnimatedIcons.add_event,
+            progress: _animationController,
+          ),
         ),
         body: ListView.builder(
             itemCount: dataBase.toDoList.length,
