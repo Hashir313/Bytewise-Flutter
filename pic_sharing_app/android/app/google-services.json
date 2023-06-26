@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1069262891739",
+    "project_id": "pic-sharing-app",
+    "storage_bucket": "pic-sharing-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069262891739:android:ed75ef24f34aaeeb7cfafe",
+        "android_client_info": {
+          "package_name": "com.example.pic_sharing_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069262891739-qdgr1j2cfo2j38t4kig7socp0ihhja3h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pic_sharing_app",
+            "certificate_hash": "d7edc726e40ccf1996828284c13b0ee975459d28"
+          }
+        },
+        {
+          "client_id": "1069262891739-qus2ppvcscvg75q6l5vnovan06jf74o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbUxdu6Eh7VoTBNipri2hCPDYz7CgZ8jQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069262891739-qus2ppvcscvg75q6l5vnovan06jf74o0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

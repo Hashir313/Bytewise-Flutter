@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "445046203672",
+    "project_id": "bytewise-e-commerce",
+    "storage_bucket": "bytewise-e-commerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445046203672:android:fd314ac83ee7aa881fea6d",
+        "android_client_info": {
+          "package_name": "com.example.e_commercw_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445046203672-j1b5mi50r5p8q57o099niseauqcpm4h3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEPR3TnycXeY63IOgl2eY1lG0Mj8eROms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445046203672-j1b5mi50r5p8q57o099niseauqcpm4h3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
