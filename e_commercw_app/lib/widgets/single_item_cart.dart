@@ -39,7 +39,7 @@ class _SingleItemCartState extends State<SingleItemCart> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppColors().primaryColor,
+            color: AppColors().buttonColor,
             width: 3,
           )),
       child: Row(
@@ -47,7 +47,7 @@ class _SingleItemCartState extends State<SingleItemCart> {
           Expanded(
             child: Container(
               height: height * 0.24,
-              color: AppColors().primaryColor.withOpacity(0.5),
+              color: AppColors().buttonColor.withOpacity(0.5),
               child: Image.network(
                 widget.productModel.productImage,
               ),
@@ -99,7 +99,7 @@ class _SingleItemCartState extends State<SingleItemCart> {
                                   },
                                   child: CircleAvatar(
                                     maxRadius: 13.0,
-                                    backgroundColor: AppColors().primaryColor,
+                                    backgroundColor: AppColors().buttonColor,
                                     child: Icon(
                                       Icons.remove,
                                       color: AppColors().backgroudColor,
@@ -127,7 +127,7 @@ class _SingleItemCartState extends State<SingleItemCart> {
                                   },
                                   child: CircleAvatar(
                                     maxRadius: 13.0,
-                                    backgroundColor: AppColors().primaryColor,
+                                    backgroundColor: AppColors().buttonColor,
                                     child: Icon(
                                       Icons.add,
                                       color: AppColors().backgroudColor,
@@ -159,7 +159,7 @@ class _SingleItemCartState extends State<SingleItemCart> {
                                     : "Add to wishlist",
                                 style: GoogleFonts.figtree(
                                   fontSize: 12.0,
-                                  color: AppColors().primaryColor,
+                                  color: AppColors().buttonColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
@@ -186,7 +186,7 @@ class _SingleItemCartState extends State<SingleItemCart> {
                     },
                     child: CircleAvatar(
                       maxRadius: 13.0,
-                      backgroundColor: AppColors().primaryColor,
+                      backgroundColor: AppColors().buttonColor,
                       child: Icon(
                         Icons.delete,
                         size: 18,

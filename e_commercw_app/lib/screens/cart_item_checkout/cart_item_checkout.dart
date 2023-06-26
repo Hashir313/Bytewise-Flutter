@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commercw_app/constants/colors.dart';
 import 'package:e_commercw_app/firebase_helper/product_firebase_firestore.dart';
 import 'package:e_commercw_app/screens/custom_bottom_bar/custom_bottom_bar.dart';
@@ -7,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/app_provider.dart';
+import '../stripe_helper/stripe_helper.dart';
 
 class CartItemCheckOutScreen extends StatefulWidget {
   const CartItemCheckOutScreen({
@@ -28,21 +31,27 @@ class _CartItemCheckOutScreenState extends State<CartItemCheckOutScreen> {
       context,
     );
     return Scaffold(
+      backgroundColor: AppColors().primaryColor.withOpacity(0.9),
       appBar: AppBar(
         title: Text(
-          "Check out",
-          style: GoogleFonts.figtree(
-            fontWeight: FontWeight.bold,
+          'Checkout',
+          style: TextStyle(
+            fontFamily: "Zolina Bold",
+            color: AppColors().primaryColor,
           ),
         ),
+        centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios),
+          icon:  Icon(
+            Icons.arrow_back_ios,
+            color: AppColors().primaryColor,
+          ),
         ),
-        centerTitle: true,
+        backgroundColor: AppColors().buttonColor.withOpacity(0.7),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -57,14 +66,14 @@ class _CartItemCheckOutScreenState extends State<CartItemCheckOutScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 border: Border.all(
-                  color: AppColors().primaryColor,
+                  color: AppColors().buttonColor,
                   width: 3.0,
                 ),
               ),
               child: Row(
                 children: [
                   Radio(
-                    activeColor: AppColors().primaryColor,
+                    activeColor: AppColors().buttonColor,
                     //fillColor: MaterialStatePropertyAll(AppColors().primaryColor),
                     value: 1,
                     groupValue: groupValue,
@@ -100,14 +109,14 @@ class _CartItemCheckOutScreenState extends State<CartItemCheckOutScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 border: Border.all(
-                  color: AppColors().primaryColor,
+                  color: AppColors().buttonColor,
                   width: 3.0,
                 ),
               ),
               child: Row(
                 children: [
                   Radio(
-                    activeColor: AppColors().primaryColor,
+                    activeColor: AppColors().buttonColor,
                     //fillColor: MaterialStatePropertyAll(AppColors().primaryColor),
                     value: 2,
                     groupValue: groupValue,
@@ -139,23 +148,32 @@ class _CartItemCheckOutScreenState extends State<CartItemCheckOutScreen> {
             ),
             LargeButtonWidget(
               onTap: () async {
-                bool value = await FirebaseFirestoreHelper.firestoreHelper
-                    .uploadBuyProductFirebase(
-                        appProvider.getBuyProductList,
+                if (groupValue == 1) {
+                  bool value = await FirebaseFirestoreHelper.firestoreHelper
+                      .uploadBuyProductFirebase(appProvider.getBuyProductList,
+                          context, "Cash on delivery");
+                  appProvider.clearBuyProduct();
+                  if (value) {
+                    Future.delayed(const Duration(seconds: 2), () {
+                      Navigator.push(
                         context,
-                        groupValue == 1 ? "Cash on delivery" : "Pay online");
-
-                        appProvider.clearBuyProduct();
-                if (value) {
-                  Future.delayed(const Duration(seconds: 2), () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CustomBottomBar(),
-                      ),
-                    );
-                  });
-                }
+                        MaterialPageRoute(
+                          builder: (context) => const CustomBottomBar(),
+                        ),
+                      );
+                    });
+                  }
+                }else {
+                    int value = double.parse(
+                            appProvider.totalPriceBuyProductList().toString())
+                        .round()
+                        .toInt();
+                    String totalPrice = (value * 100).toString();
+                    //print(totalPrice);
+                    await StripeHelper.instance
+                        .makePayment(totalPrice.toString() , context);
+                    
+                  }
               },
               buttonText: "Continue",
               loading: false,

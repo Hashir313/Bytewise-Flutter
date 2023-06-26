@@ -16,14 +16,18 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
+      backgroundColor: AppColors().primaryColor.withOpacity(0.9),
       appBar: AppBar(
         title: Text(
-          "Your Orders",
-          style: GoogleFonts.figtree(
-            fontWeight: FontWeight.bold,
+          'Your Orders',
+          style: TextStyle(
+            fontFamily: "Zolina Bold",
+            color: AppColors().primaryColor,
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColors().buttonColor.withOpacity(0.7),
       ),
       body: FutureBuilder(
           future: FirebaseFirestoreHelper.firestoreHelper.getUserOrder(),
@@ -57,23 +61,23 @@ class _OrderScreenState extends State<OrderScreen> {
                       collapsedShape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         side: BorderSide(
-                          color: AppColors().primaryColor,
+                          color: AppColors().buttonColor,
                           width: 2.0,
                         ),
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         side: BorderSide(
-                          color: AppColors().primaryColor,
+                          color: AppColors().buttonColor,
                           width: 2.0,
                         ),
                       ),
                       title: Row(
                         children: [
                           Container(
-                            height: 200,
+                            height: 250,
                             width: 150,
-                            color: AppColors().primaryColor.withOpacity(0.5),
+                            color: AppColors().buttonColor.withOpacity(0.5),
                             child: Image.network(
                               orderModel.products[0].productImage,
                             ),
@@ -82,7 +86,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             flex: 1,
                             child: Container(
                               padding: const EdgeInsets.all(12.0),
-                              height: height * 0.24,
+                              height: height * 0.3,
                               color:
                                   AppColors().backgroudColor.withOpacity(0.5),
                               child: Stack(
@@ -173,7 +177,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 ),
                               ),
                               Divider(
-                                color: AppColors().primaryColor,
+                                color: AppColors().buttonColor,
                               ),
                               ...orderModel.products.map((singleProduct) {
                                 return Padding(
@@ -186,7 +190,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                             height: 80,
                                             width: 80,
                                             color: AppColors()
-                                                .primaryColor
+                                                .buttonColor
                                                 .withOpacity(0.5),
                                             child: Image.network(
                                               singleProduct.productImage,
@@ -281,7 +285,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                         ],
                                       ),
                                       Divider(
-                                        color: AppColors().primaryColor,
+                                        color: AppColors().buttonColor,
                                       )
                                     ],
                                   ),

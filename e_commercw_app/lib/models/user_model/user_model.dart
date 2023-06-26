@@ -6,8 +6,7 @@ UserModel singleUserModelFromJson(String str) =>
 String singleUserModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
-  UserModel(
-    {
+  UserModel({
     required this.userId,
     required this.userName,
     required this.userEmail,
@@ -32,4 +31,15 @@ class UserModel {
         "userImage": userImage,
         "userEmail": userEmail,
       };
+
+  UserModel copyWith({
+    String? userName,
+    String? userImage,
+  }) =>
+      UserModel(
+        userId: userId,
+        userEmail: userEmail,
+        userName: userName ?? this.userName,
+        userImage: userImage ?? this.userImage,
+      );
 }

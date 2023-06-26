@@ -27,13 +27,12 @@ class _CartScreenState extends State<CartScreen> {
 
     final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       bottomNavigationBar: appProvider.getCartProductList.isEmpty
           ? Center(
               child: Text(
                 "Cart is empty",
                 style: GoogleFonts.figtree(
-                    color: AppColors().primaryColor,
+                    color: AppColors().buttonColor,
                     fontSize: 22.0,
                     fontWeight: FontWeight.bold),
               ),
@@ -88,14 +87,18 @@ class _CartScreenState extends State<CartScreen> {
                 ],
               ),
             ),
+      backgroundColor: AppColors().primaryColor.withOpacity(0.9),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.grey[100],
         title: Text(
-          "My Cart",
-          style: GoogleFonts.figtree(fontWeight: FontWeight.bold),
+          'Your Cart',
+          style: TextStyle(
+            fontFamily: "Zolina Bold",
+            color: AppColors().primaryColor,
+          ),
         ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColors().buttonColor.withOpacity(0.7),
       ),
       body: ListView.builder(
           padding: const EdgeInsets.all(12),

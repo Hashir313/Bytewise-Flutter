@@ -23,22 +23,34 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
     //final height = MediaQuery.sizeOf(context).height;
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: AppColors().primaryColor.withOpacity(0.9),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.grey[100],
         title: Text(
-          "Favourite List",
-          style: GoogleFonts.figtree(fontWeight: FontWeight.bold),
+          'Your Profile',
+          style: TextStyle(
+            fontFamily: "Zolina Bold",
+            color: AppColors().primaryColor,
+          ),
         ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon:  Icon(
+            Icons.arrow_back_ios,
+            color: AppColors().primaryColor,
+          ),
+        ),
+        backgroundColor: AppColors().buttonColor.withOpacity(0.7),
       ),
       body: appProvider.getFavouriteProductList.isEmpty
           ? Center(
               child: Text(
                 "Favourite is empty",
                 style: GoogleFonts.figtree(
-                  color: AppColors().primaryColor,
+                  color: AppColors().buttonColor,
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold
                 ),

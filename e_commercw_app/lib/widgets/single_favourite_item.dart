@@ -26,7 +26,7 @@ class _SingleFavouriteItemState extends State<SingleFavouriteItem> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppColors().primaryColor,
+            color: AppColors().buttonColor,
             width: 3,
           )),
       child: Row(
@@ -34,7 +34,7 @@ class _SingleFavouriteItemState extends State<SingleFavouriteItem> {
           Expanded(
             child: Container(
               height: height * 0.2,
-              color: AppColors().primaryColor.withOpacity(0.5),
+              color: AppColors().buttonColor.withOpacity(0.5),
               child: Image.network(
                 widget.productModel.productImage,
               ),
@@ -83,7 +83,7 @@ class _SingleFavouriteItemState extends State<SingleFavouriteItem> {
                                 "Remove from wishlist",
                                 style: GoogleFonts.figtree(
                                   fontSize: 12.0,
-                                  color: AppColors().primaryColor,
+                                  color: AppColors().buttonColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,

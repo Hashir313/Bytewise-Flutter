@@ -1,7 +1,6 @@
 import 'package:e_commercw_app/constants/colors.dart';
 import 'package:e_commercw_app/models/product_model/single_product_model.dart';
 import 'package:e_commercw_app/provider/app_provider.dart';
-import 'package:e_commercw_app/screens/cart_view/cart_view.dart';
 import 'package:e_commercw_app/screens/checkout_screen/checkout_screen.dart';
 import 'package:e_commercw_app/widgets/flutter_toast.dart';
 import 'package:e_commercw_app/widgets/view_product_button.dart';
@@ -30,29 +29,27 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
 
     return Scaffold(
-      backgroundColor: AppColors().primaryColor,
+      backgroundColor: AppColors().primaryColor.withOpacity(0.9),
       appBar: AppBar(
         title: Text(
           widget.singleProductModel.productName,
-          style:
-              GoogleFonts.figtree(fontSize: 20.0, fontWeight: FontWeight.w300),
+          style: TextStyle(
+            fontFamily: "Zolina Bold",
+            color: AppColors().primaryColor,
+          ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CartScreen()),
-              );
-            },
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              color: AppColors().textColor,
-            ),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon:  Icon(
+            Icons.arrow_back_ios,
+            color: AppColors().primaryColor,
           ),
-        ],
+        ),
+        backgroundColor: AppColors().buttonColor.withOpacity(0.7),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +135,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => CheckOutScreen(
-                              productModel: productModel,
+                              productModel: widget.singleProductModel,
                             ),
                           ),
                         );
